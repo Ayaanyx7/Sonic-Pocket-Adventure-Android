@@ -13,6 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout private Egg repo
+        uses: actions/checkout@v4
+        with:
+          repository: Ayaanyx7/Egg
+          ssh-key: ${{ secrets.EGG_SSH_KEY }}
+          path: egg-repo
+
       - name: Decode ROM from secrets
         env:
           ROM_B64: ${{ secrets.SPA_ROM_BASE64 }}
@@ -44,13 +51,13 @@ jobs:
             -DSPA_PREGENERATED_DIR="$PWD/build-host/generated"
           cmake --build build-android-lib --target spa_generated -j2
 
-      - name: Commit libspa_generated.a to prebuilt/
+      - name: Commit libspa_generated.a to private repo
         run: |
-          rm -f rom.ngc
-          mkdir -p prebuilt/arm64-v8a
-          cp build-android-lib/libspa_generated.a prebuilt/arm64-v8a/libspa_generated.a
+          mkdir -p egg-repo/prebuilt/arm64-v8a
+          cp build-android-lib/libspa_generated.a egg-repo/prebuilt/arm64-v8a/libspa_generated.a
+          cd egg-repo
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@://github.com"
           git add prebuilt/arm64-v8a/libspa_generated.a
           git commit -m "chore: update prebuilt arm64-v8a libspa_generated.a" || echo "No changes to commit"
           git push
