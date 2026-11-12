@@ -1,0 +1,37 @@
+name: Import SDL3 Android Project
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove old android-project
+        run: rm -rf android-project
+
+      - name: Download SDL3
+        run: |
+          wget https://github.com/libsdl-org/SDL/releases/download/release-3.4.8/SDL3-3.4.8.zip
+          unzip SDL2-3.4.8.zip
+
+      - name: Copy android-project
+        run: |
+          cp -r SDL2-3.4.8/android-project ./android-project
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add android-project
+          git commit -m "Import SDL3 android-project" || echo "No changes"
+
+      - name: Push
+        run: git push
