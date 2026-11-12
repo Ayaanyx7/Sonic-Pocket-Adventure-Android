@@ -20,11 +20,11 @@ jobs:
       - name: Download SDL3
         run: |
           wget https://github.com/libsdl-org/SDL/releases/download/release-3.4.8/SDL3-3.4.8.zip
-          unzip SDL2-3.4.8.zip
+          unzip SDL3-3.4.8.zip
 
       - name: Copy android-project
         run: |
-          cp -r SDL2-3.4.8/android-project ./android-project
+          cp -r SDL3-3.4.8/android-project ./android-project
 
       - name: Commit
         run: |
