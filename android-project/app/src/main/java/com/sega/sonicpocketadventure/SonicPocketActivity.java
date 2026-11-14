@@ -1,4 +1,4 @@
-package com.glitchkiss.sonicpocket;
+package com.sega.sonicpocketadventure;
 
 import android.app.Activity;
 import android.content.Intent;
