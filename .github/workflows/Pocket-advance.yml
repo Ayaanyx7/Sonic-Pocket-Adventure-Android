@@ -59,8 +59,10 @@ jobs:
           mkdir -p egg-repo/prebuilt/arm64-v8a
           cp build-android-lib/libspa_generated.a egg-repo/prebuilt/arm64-v8a/libspa_generated.a
           cd egg-repo
+          git lfs install
+          git lfs track "*.a"
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@://github.com"
-          git add prebuilt/arm64-v8a/libspa_generated.a
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .gitattributes prebuilt/arm64-v8a/libspa_generated.a
           git commit -m "chore: update prebuilt arm64-v8a libspa_generated.a" || echo "No changes to commit"
           git push
