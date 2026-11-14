@@ -78,7 +78,7 @@
         <meta-data android:name="SDL_ENV.SDL_ANDROID_TRAP_BACK_BUTTON" android:value="0"/>
          -->
 
-        <activity android:name="SonicPocketActivity"
+        <activity android:name=".SonicPocketActivity"
             android:label="@string/app_name"
             android:screenOrientation="sensorLandscape"
             android:alwaysRetainTaskState="true"
