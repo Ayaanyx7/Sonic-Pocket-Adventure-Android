@@ -47,7 +47,7 @@ jobs:
             -DANDROID_PLATFORM=android-24 \
             -DANDROID_STL=c++_shared \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_CXX_FLAGS_RELEASE="-O1 -DNDEBUG" \
+            -DCMAKE_CXX_FLAGS_RELEASE="-O0 -DNDEBUG" \
             -DSPA_ONLY_LIB=ON \
             -DSPA_PREGENERATED_DIR="$PWD/build-host/generated"
           cmake --build build-android-lib --target spa_generated -j4
