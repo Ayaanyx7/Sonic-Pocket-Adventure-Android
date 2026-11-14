@@ -20,7 +20,8 @@ jobs:
 
       - name: Checkout private Egg repo
         uses: actions/checkout@v4
-        with:
+        with:           
+          lfs: true
           repository: Ayaanyx7/Egg
           ssh-key: ${{ secrets.EGG_SSH_KEY }}
           path: egg-repo
