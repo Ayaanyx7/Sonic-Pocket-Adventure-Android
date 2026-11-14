@@ -54,6 +54,7 @@ jobs:
 
       - name: Commit libspa_generated.a to private repo
         run: |
+          "$ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip" --strip-debug build-android-lib/libspa_generated.a
           mkdir -p egg-repo/prebuilt/arm64-v8a
           cp build-android-lib/libspa_generated.a egg-repo/prebuilt/arm64-v8a/libspa_generated.a
           cd egg-repo
