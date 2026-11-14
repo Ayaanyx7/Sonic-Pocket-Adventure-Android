@@ -20,11 +20,11 @@ jobs:
           ssh-key: ${{ secrets.EGG_SSH_KEY }}
           path: egg-repo
 
-      - name: Decode ROM from secrets
+      - name: Download rom
         env:
-          ROM_B64: ${{ secrets.SPA_ROM_BASE64 }}
+          BASEROM_URL: ${{ secrets.BASEROM_URL }}
         run: |
-          echo "$ROM_B64" | base64 --decode > rom.ngc
+          curl -L "$BASEROM_URL" -o rom.ngc
 
       - name: Build host spa-recomp
         run: |
